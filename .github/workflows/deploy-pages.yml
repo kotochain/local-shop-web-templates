@@ -1,0 +1,59 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Build three apps
+        run: |
+          mkdir -p _site/shots
+          for app in booking-app landing-page quote-calculator; do
+            echo "== building $app =="
+            cd "$app"
+            npm install
+            npm run build
+            cd ..
+            mkdir -p "_site/$app"
+            cp -r "$app/dist/." "_site/$app/"
+          done
+
+      - name: Build portal index
+        run: |
+          cp portal.html _site/index.html
+          cp "作品集/screenshots/booking-beauty.png" _site/shots/
+          cp "作品集/screenshots/landing-renovation.png" _site/shots/
+          cp "作品集/screenshots/quote-result.png" _site/shots/
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
