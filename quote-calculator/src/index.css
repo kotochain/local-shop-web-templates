@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------------- 全局基础样式 ---------------- */
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB',
+    'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background-color: #f2f6f9;
+  color: #152c3e;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 数字使用等宽字形，避免跳动时宽度抖动 */
+.tabular {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum';
+}
+
+/* 隐藏 input[type=number] 的上下箭头，移动端更干净 */
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+/* 金额数字变化时的轻微过渡 */
+@keyframes numberPop {
+  0% {
+    opacity: 0.55;
+    transform: translateY(4px) scale(0.985);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.number-pop {
+  animation: numberPop 0.26s ease-out both;
+}
+
+/* 报价单纸张纹理（纯 CSS，不依赖图片） */
+.paper {
+  background-color: #ffffff;
+  background-image: linear-gradient(180deg, #ffffff 0%, #fdfdfb 100%);
+}
