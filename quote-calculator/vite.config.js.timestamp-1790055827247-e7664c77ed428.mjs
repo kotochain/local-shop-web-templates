@@ -1,0 +1,20 @@
+// vite.config.js
+import { defineConfig } from "file:///Users/javian/Desktop/%E9%97%B2%E9%B1%BC/%E7%BD%91%E7%AB%99%E5%B0%8F%E7%A8%8B%E5%BA%8F%20demo/quote-calculator/node_modules/vite/dist/node/index.js";
+import react from "file:///Users/javian/Desktop/%E9%97%B2%E9%B1%BC/%E7%BD%91%E7%AB%99%E5%B0%8F%E7%A8%8B%E5%BA%8F%20demo/quote-calculator/node_modules/@vitejs/plugin-react/dist/index.js";
+var vite_config_default = defineConfig({
+  base: "./",
+  plugins: [react()],
+  server: {
+    host: "127.0.0.1",
+    port: 5173,
+    open: false
+  },
+  build: {
+    outDir: "dist",
+    assetsDir: "assets"
+  }
+});
+export {
+  vite_config_default as default
+};
+//# sourceMappingURL=data:application/json;base64,ewogICJ2ZXJzaW9uIjogMywKICAic291cmNlcyI6IFsidml0ZS5jb25maWcuanMiXSwKICAic291cmNlc0NvbnRlbnQiOiBbImNvbnN0IF9fdml0ZV9pbmplY3RlZF9vcmlnaW5hbF9kaXJuYW1lID0gXCIvVXNlcnMvamF2aWFuL0Rlc2t0b3AvXHU5NUYyXHU5QzdDL1x1N0Y1MVx1N0FEOVx1NUMwRlx1N0EwQlx1NUU4RiBkZW1vL3F1b3RlLWNhbGN1bGF0b3JcIjtjb25zdCBfX3ZpdGVfaW5qZWN0ZWRfb3JpZ2luYWxfZmlsZW5hbWUgPSBcIi9Vc2Vycy9qYXZpYW4vRGVza3RvcC9cdTk1RjJcdTlDN0MvXHU3RjUxXHU3QUQ5XHU1QzBGXHU3QTBCXHU1RThGIGRlbW8vcXVvdGUtY2FsY3VsYXRvci92aXRlLmNvbmZpZy5qc1wiO2NvbnN0IF9fdml0ZV9pbmplY3RlZF9vcmlnaW5hbF9pbXBvcnRfbWV0YV91cmwgPSBcImZpbGU6Ly8vVXNlcnMvamF2aWFuL0Rlc2t0b3AvJUU5JTk3JUIyJUU5JUIxJUJDLyVFNyVCRCU5MSVFNyVBQiU5OSVFNSVCMCU4RiVFNyVBOCU4QiVFNSVCQSU4RiUyMGRlbW8vcXVvdGUtY2FsY3VsYXRvci92aXRlLmNvbmZpZy5qc1wiO2ltcG9ydCB7IGRlZmluZUNvbmZpZyB9IGZyb20gJ3ZpdGUnO1xuaW1wb3J0IHJlYWN0IGZyb20gJ0B2aXRlanMvcGx1Z2luLXJlYWN0JztcblxuLy8gYmFzZSBcdTRGN0ZcdTc1MjhcdTc2RjhcdTVCRjlcdThERUZcdTVGODRcdUZGMENcdTRGRERcdThCQzEgZGlzdCBcdTc2RUVcdTVGNTVcdTUzQ0NcdTUxRkJcdTYyNTNcdTVGMDBcdTYyMTZcdTkwRThcdTdGNzJcdTUyMzBcdTRFRkJcdTYxMEZcdTVCNTBcdThERUZcdTVGODRcdTkwRkRcdTgwRkRcdTZCNjNcdTVFMzhcdThCQkZcdTk1RUVcbmV4cG9ydCBkZWZhdWx0IGRlZmluZUNvbmZpZyh7XG4gIGJhc2U6ICcuLycsXG4gIHBsdWdpbnM6IFtyZWFjdCgpXSxcbiAgc2VydmVyOiB7XG4gICAgaG9zdDogJzEyNy4wLjAuMScsXG4gICAgcG9ydDogNTE3MyxcbiAgICBvcGVuOiBmYWxzZSxcbiAgfSxcbiAgYnVpbGQ6IHtcbiAgICBvdXREaXI6ICdkaXN0JyxcbiAgICBhc3NldHNEaXI6ICdhc3NldHMnLFxuICB9LFxufSk7XG4iXSwKICAibWFwcGluZ3MiOiAiO0FBQXdZLFNBQVMsb0JBQW9CO0FBQ3JhLE9BQU8sV0FBVztBQUdsQixJQUFPLHNCQUFRLGFBQWE7QUFBQSxFQUMxQixNQUFNO0FBQUEsRUFDTixTQUFTLENBQUMsTUFBTSxDQUFDO0FBQUEsRUFDakIsUUFBUTtBQUFBLElBQ04sTUFBTTtBQUFBLElBQ04sTUFBTTtBQUFBLElBQ04sTUFBTTtBQUFBLEVBQ1I7QUFBQSxFQUNBLE9BQU87QUFBQSxJQUNMLFFBQVE7QUFBQSxJQUNSLFdBQVc7QUFBQSxFQUNiO0FBQ0YsQ0FBQzsiLAogICJuYW1lcyI6IFtdCn0K
