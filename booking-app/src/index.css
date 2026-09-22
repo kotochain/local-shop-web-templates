@@ -1,0 +1,145 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------------------------------------------------------------------------
+   主题变量默认值：对应「美容」皮肤。
+   运行时由 useIndustry 通过 JS 覆盖，这里只作为首屏渲染前的兜底。
+   --------------------------------------------------------------------------- */
+:root {
+  --brand: #c97b84;
+  --brand-dark: #a25a66;
+  --brand-soft: #f8e9ea;
+  --on-brand: #ffffff;
+  --accent: #e3a899;
+  --bg: #fff9f7;
+  --card: #ffffff;
+  --text: #402c30;
+  --muted: #9c8589;
+  --border: #f1e1de;
+
+  color-scheme: light;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB',
+    'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* 弹窗打开时锁定背景滚动，避免移动端滚动穿透 */
+body.is-locked {
+  overflow: hidden;
+}
+
+/* 隐藏横向滚动条，但保留滚动能力（日期条、服务横向列表） */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+@layer utilities {
+  /* 顶部渐变装饰背景 */
+  .hero-gradient {
+    background-image: linear-gradient(160deg, var(--brand-soft) 0%, var(--bg) 62%);
+  }
+  /* 主按钮渐变 */
+  .btn-gradient {
+    background-image: linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%);
+  }
+  /* 玻璃质感信息条 */
+  .glass-chip {
+    background-color: var(--card);
+    border: 1px solid var(--border);
+  }
+}
+
+/* 底部弹出面板入场动画 */
+@keyframes sheet-in {
+  from {
+    transform: translateY(8%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes toast-in {
+  from {
+    transform: translate(-50%, 16px);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes pop-in {
+  0% {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.02);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-sheet-in {
+  animation: sheet-in 0.26s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.animate-fade-in {
+  animation: fade-in 0.22s ease-out;
+}
+
+.animate-toast-in {
+  animation: toast-in 0.24s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.animate-pop-in {
+  animation: pop-in 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* 尊重系统「减少动效」设置 */
+@media (prefers-reduced-motion: reduce) {
+  .animate-sheet-in,
+  .animate-fade-in,
+  .animate-toast-in,
+  .animate-pop-in {
+    animation: none;
+  }
+}
