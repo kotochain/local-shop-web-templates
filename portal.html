@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>本地商家网页模板套件 · 在线预览</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background:linear-gradient(160deg,#0C1526 0%,#16243C 55%,#0C1526 100%);
+    color:#fff; min-height:100vh; padding:48px 20px 40px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap { max-width:760px; margin:0 auto; }
+  .logo {
+    display:inline-block; padding:7px 16px; border-radius:999px; font-size:14px;
+    background:rgba(52,211,153,.14); color:#34D399; border:1px solid rgba(52,211,153,.35);
+    margin-bottom:18px;
+  }
+  h1 { font-size:34px; line-height:1.25; font-weight:800; letter-spacing:-.5px; }
+  h1 span { color:#34D399; }
+  .lead { font-size:17px; line-height:1.7; color:rgba(255,255,255,.66); margin-top:14px; }
+  .grid { display:grid; grid-template-columns:1fr; gap:18px; margin-top:32px; }
+  @media (min-width:640px){ .grid { grid-template-columns:1fr 1fr; } }
+  .card {
+    display:block; text-decoration:none; color:inherit;
+    background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.11);
+    border-radius:20px; padding:24px 24px 22px; transition:.2s;
+  }
+  .card:hover { background:rgba(255,255,255,.09); border-color:rgba(52,211,153,.4); transform:translateY(-3px); }
+  .card.full { grid-column:1 / -1; }
+  .thumb {
+    width:100%; height:150px; border-radius:12px; margin-bottom:16px; overflow:hidden;
+    background:#fff; position:relative;
+  }
+  .thumb img.shot { width:100%; display:block; }
+  .thumb .cut { height:150px; background-repeat:no-repeat; }
+  .card h2 { font-size:22px; font-weight:700; }
+  .card .meta { font-size:14px; color:#34D399; margin-top:6px; font-weight:600; }
+  .card p { font-size:15px; line-height:1.6; color:rgba(255,255,255,.60); margin-top:10px; }
+  .go {
+    display:inline-block; margin-top:16px; padding:10px 22px; border-radius:12px; font-size:15px; font-weight:700;
+    background:linear-gradient(140deg,#34D399,#0EA5A4); color:#06231A;
+  }
+  .tips {
+    margin-top:34px; padding:20px 22px; border-radius:16px;
+    background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.09);
+    font-size:15px; line-height:1.9; color:rgba(255,255,255,.62);
+  }
+  .tips b { color:rgba(255,255,255,.9); }
+  footer { margin-top:26px; font-size:13px; color:rgba(255,255,255,.35); line-height:1.8; }
+  footer a { color:rgba(255,255,255,.55); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <span class="logo">纯前端 · 不用服务器</span>
+  <h1>本地商家<span>网页模板套件</span></h1>
+  <p class="lead">
+    预约系统、官网落地页、报价计算器三套模板，手机上直接打开就能用。<br>
+    所有文案和配色集中在一个配置文件里，改一个文件就换一个行业。
+  </p>
+
+  <div class="grid">
+    <a class="card full" href="./booking-app/">
+      <div class="thumb"><div class="cut" style="background-image:url('./shots/booking-beauty.png');background-size:100% auto;background-position:center top;"></div></div>
+      <h2>① 在线预约系统</h2>
+      <div class="meta">美容 · 健身 · 维修　三套皮肤</div>
+      <p>选服务 → 选日期时段 → 填姓名手机 → 提交成功。已约时段自动置灰，今天过期的时段自动失效，顾客记录存手机本地。</p>
+      <span class="go">打开预约系统 →</span>
+    </a>
+
+    <a class="card" href="./landing-page/">
+      <div class="thumb"><div class="cut" style="background-image:url('./shots/landing-renovation.png');background-size:100% auto;background-position:center top;"></div></div>
+      <h2>② 官网落地页</h2>
+      <div class="meta">装修 · 律所 · 摄影 · 培训 · 餐饮</div>
+      <p>首屏、服务、案例、评价、联系表单一套配齐。</p>
+      <span class="go">打开落地页 →</span>
+    </a>
+
+    <a class="card" href="./quote-calculator/">
+      <div class="thumb"><div class="cut" style="background-image:url('./shots/quote-result.png');background-size:100% auto;background-position:center top;"></div></div>
+      <h2>③ 报价计算器</h2>
+      <div class="meta">改参数实时出报价单</div>
+      <p>选户型、填面积、选档次、勾附加项，当场生成可截图的正式报价单。</p>
+      <span class="go">打开报价器 →</span>
+    </a>
+  </div>
+
+  <div class="tips">
+    <b>怎么换成你自己的店？</b><br>
+    每个项目只需改一个文件：预约系统和落地页改 <b>src/config/industries.js</b>，报价计算器改 <b>src/config/pricing.js</b>。<br>
+    店名、营业时间、服务项目、价格、整套配色都在里面，不用碰组件代码。
+  </div>
+
+  <footer>
+    源码开源 · MIT License · 数据保存在浏览器本地，不上传任何服务器<br>
+    <a href="https://github.com/kotochain/local-shop-web-templates">查看源码与部署说明</a>
+  </footer>
+</div>
+</body>
+</html>
