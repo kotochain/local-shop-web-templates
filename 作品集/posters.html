@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>闲鱼商品图</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    background:#000;
+  }
+  .poster {
+    width:750px; height:1000px; position:relative; overflow:hidden;
+    padding:54px 48px;
+    background:linear-gradient(155deg,#0C1526 0%,#16243C 55%,#0C1526 100%);
+    color:#fff;
+    display:flex; flex-direction:column;
+  }
+  .poster::before {
+    content:""; position:absolute; right:-140px; top:-140px;
+    width:420px; height:420px; border-radius:50%;
+    background:radial-gradient(circle, rgba(52,211,153,.20) 0%, rgba(52,211,153,0) 70%);
+  }
+  .badge {
+    display:inline-block; align-self:flex-start;
+    padding:8px 18px; border-radius:999px; font-size:19px; letter-spacing:1px;
+    background:rgba(52,211,153,.14); color:#34D399; border:1px solid rgba(52,211,153,.35);
+    margin-bottom:20px;
+  }
+  h1 { font-size:46px; line-height:1.22; font-weight:800; letter-spacing:-.5px; }
+  h1 .hl { color:#34D399; }
+  .sub { font-size:22px; line-height:1.55; color:rgba(255,255,255,.66); margin-top:14px; }
+  .gap { flex:1; }
+  .row { display:flex; gap:24px; }
+  .col { display:flex; flex-direction:column; }
+
+  .phone {
+    border-radius:30px; overflow:hidden; position:relative;
+    background:#fff; box-shadow:0 22px 48px rgba(0,0,0,.45), 0 0 0 1px rgba(255,255,255,.10);
+  }
+  .screen { width:100%; height:100%; background-repeat:no-repeat; }
+
+  .cap { text-align:center; font-size:19px; color:rgba(255,255,255,.80); margin-top:12px; font-weight:600; }
+  .cap small { display:block; font-size:15px; color:rgba(255,255,255,.42); font-weight:400; margin-top:3px; }
+
+  .tags { display:flex; flex-wrap:wrap; gap:12px; margin-top:22px; }
+  .tag {
+    padding:10px 18px; border-radius:12px; font-size:19px;
+    background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.12);
+    color:rgba(255,255,255,.86);
+  }
+  .tag.g {
+    background:rgba(52,211,153,.14); border-color:rgba(52,211,153,.35); color:#6EE7B7;
+  }
+  .tag.o {
+    background:rgba(245,158,11,.14); border-color:rgba(245,158,11,.35); color:#FCD34D;
+  }
+
+  .steps { display:flex; flex-direction:column; gap:18px; margin-top:26px; }
+  .step { display:flex; align-items:center; gap:16px; }
+  .num {
+    width:44px; height:44px; flex:none; border-radius:50%;
+    background:linear-gradient(140deg,#34D399,#0EA5A4); color:#06231A;
+    font-size:21px; font-weight:800; display:flex; align-items:center; justify-content:center;
+  }
+  .tx { font-size:24px; color:rgba(255,255,255,.92); font-weight:600; }
+  .tx small { display:block; font-size:17px; color:rgba(255,255,255,.45); font-weight:400; margin-top:2px; }
+
+  .points { display:flex; flex-direction:column; gap:15px; margin-top:24px; }
+  .pt { display:flex; gap:14px; align-items:flex-start; font-size:22px; color:rgba(255,255,255,.88); line-height:1.4; }
+  .dot { width:10px; height:10px; border-radius:50%; background:#34D399; flex:none; margin-top:9px; }
+
+  .cards { display:flex; gap:16px; margin-top:26px; }
+  .card {
+    flex:1; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.11);
+    border-radius:18px; padding:20px 16px; text-align:center;
+  }
+  .card .k { font-size:40px; }
+  .card .t { font-size:20px; font-weight:700; margin-top:8px; }
+  .card .d { font-size:15px; color:rgba(255,255,255,.50); margin-top:6px; line-height:1.4; }
+
+  .pricebar {
+    margin-top:24px; padding:20px 24px; border-radius:18px;
+    background:linear-gradient(100deg,rgba(245,158,11,.18),rgba(245,158,11,.05));
+    border:1px solid rgba(245,158,11,.30); display:flex; align-items:center; justify-content:space-between;
+  }
+  .pricebar .l { font-size:21px; color:rgba(255,255,255,.75); }
+  .pricebar .r { font-size:40px; font-weight:800; color:#FCD34D; }
+
+  .foot {
+    margin-top:22px; padding-top:18px; border-top:1px solid rgba(255,255,255,.10);
+    display:flex; align-items:center; justify-content:space-between;
+    font-size:19px; color:rgba(255,255,255,.55);
+  }
+  .foot b { color:#34D399; font-size:21px; }
+</style>
+</head>
+<body>
+
+<!-- 1 封面 -->
+<section class="poster">
+  <span class="badge">手机直接打开 · 不用服务器不用备案</span>
+  <h1>商家小程序<br><span class="hl">Demo 三件套</span></h1>
+  <div class="sub">在线预约 · 官网落地页 · 报价计算器<br>改一个文件就能换行业，当天出预览链接</div>
+  <div class="gap"></div>
+  <div class="row" style="justify-content:space-between;">
+    <div class="col" style="width:200px;">
+      <div class="phone" style="width:200px;height:420px;">
+        <div class="screen" style="background-image:url('screenshots/booking-beauty.png');background-size:200px auto;background-position:0 0;"></div>
+      </div>
+      <div class="cap">预约系统<small>美容 / 健身 / 维修</small></div>
+    </div>
+    <div class="col" style="width:200px;">
+      <div class="phone" style="width:200px;height:420px;">
+        <div class="screen" style="background-image:url('screenshots/landing-renovation.png');background-size:200px auto;background-position:0 0;"></div>
+      </div>
+      <div class="cap">官网落地页<small>5 个行业版本</small></div>
+    </div>
+    <div class="col" style="width:200px;">
+      <div class="phone" style="width:200px;height:420px;">
+        <div class="screen" style="background-image:url('screenshots/quote-input.png');background-size:200px auto;background-position:0 0;"></div>
+      </div>
+      <div class="cap">报价计算器<small>实时出报价单</small></div>
+    </div>
+  </div>
+  <div class="tags">
+    <span class="tag g">当天出链接</span>
+    <span class="tag">手机端专门优化</span>
+    <span class="tag">文案配色可改</span>
+    <span class="tag o">支持二次修改</span>
+  </div>
+</section>
+
+<!-- 2 预约流程 -->
+<section class="poster">
+  <span class="badge">01 预约系统</span>
+  <h1>顾客 <span class="hl">4 步</span> 完成预约</h1>
+  <div class="row" style="gap:30px;margin-top:10px;">
+    <div class="col" style="flex:1;">
+      <div class="steps">
+        <div class="step"><div class="num">1</div><div class="tx">选服务<small>名称 / 时长 / 价格一目了然</small></div></div>
+        <div class="step"><div class="num">2</div><div class="tx">选日期和时段<small>未来 7 天，按时长自动排档</small></div></div>
+        <div class="step"><div class="num">3</div><div class="tx">填姓名手机号<small>格式自动校验，填错拦得住</small></div></div>
+        <div class="step"><div class="num">4</div><div class="tx">提交成功<small>下方“我的预约”随时可查</small></div></div>
+      </div>
+    </div>
+    <div class="phone" style="width:250px;height:560px;flex:none;">
+      <div class="screen" style="background-image:url('screenshots/booking-beauty.png');background-size:250px auto;background-position:0 0;"></div>
+    </div>
+  </div>
+  <div class="gap"></div>
+  <div class="foot"><span>纯前端方案，数据存手机本地</span><span>适用 <b>美容 / 美甲 / 理发 / 健身 / 维修</b></span></div>
+</section>
+
+<!-- 3 三套皮肤 -->
+<section class="poster">
+  <span class="badge">一套源码 · 多套皮肤</span>
+  <h1>换个配色文案<br>就是<span class="hl">另一个行业</span></h1>
+  <div class="gap"></div>
+  <div class="row" style="justify-content:space-between;">
+    <div class="col" style="width:198px;">
+      <div class="phone" style="width:198px;height:400px;">
+        <div class="screen" style="background-image:url('screenshots/booking-beauty.png');background-size:198px auto;background-position:0 0;"></div>
+      </div>
+      <div class="cap">美容<small>暖玫瑰 · 柔和</small></div>
+    </div>
+    <div class="col" style="width:198px;">
+      <div class="phone" style="width:198px;height:400px;">
+        <div class="screen" style="background-image:url('screenshots/booking-gym.png');background-size:198px auto;background-position:0 0;"></div>
+      </div>
+      <div class="cap">健身<small>深色 · 运动感</small></div>
+    </div>
+    <div class="col" style="width:198px;">
+      <div class="phone" style="width:198px;height:400px;">
+        <div class="screen" style="background-image:url('screenshots/booking-repair.png');background-size:198px auto;background-position:0 0;"></div>
+      </div>
+      <div class="cap">维修<small>工业蓝 · 可靠</small></div>
+    </div>
+  </div>
+  <div class="gap"></div>
+  <div class="tags">
+    <span class="tag">店名可改</span>
+    <span class="tag">营业时间可改</span>
+    <span class="tag">服务项目可改</span>
+    <span class="tag g">配色一处改全站</span>
+  </div>
+</section>
+
+<!-- 4 冲突与记录 -->
+<section class="poster">
+  <span class="badge">细节做在前面</span>
+  <h1>已约时段<span class="hl">自动锁死</span><br>不怕撞单</h1>
+  <div class="row" style="gap:28px;margin-top:22px;">
+    <div class="col" style="flex:1;">
+      <div class="points">
+        <div class="pt"><span class="dot"></span>同一时段被约走自动置灰，选不了</div>
+        <div class="pt"><span class="dot"></span>今天已过去的时段自动失效</div>
+        <div class="pt"><span class="dot"></span>手机号中间四位打码显示</div>
+        <div class="pt"><span class="dot"></span>一键取消，时段立刻释放</div>
+        <div class="pt"><span class="dot"></span>关掉浏览器再打开，记录还在</div>
+      </div>
+    </div>
+    <div class="phone" style="width:330px;height:420px;flex:none;">
+      <div class="screen" style="background-image:url('screenshots/booking-beauty.png');background-size:330px auto;background-position:0 -702px;"></div>
+    </div>
+  </div>
+  <div class="tags">
+    <span class="tag o">不用后台也能用</span>
+    <span class="tag">顾客自助下单</span>
+    <span class="tag">商家少接电话</span>
+  </div>
+</section>
+
+<!-- 5 落地页 5 行业 -->
+<section class="poster">
+  <span class="badge">02 官网落地页</span>
+  <h1><span class="hl">5 个行业</span>版本<br>一套模板出五种气质</h1>
+  <div class="gap"></div>
+  <div class="row" style="justify-content:space-between;">
+    <div class="col" style="width:118px;">
+      <div class="phone" style="width:118px;height:250px;">
+        <div class="screen" style="background-image:url('screenshots/landing-renovation.png');background-size:118px auto;background-position:0 0;"></div>
+      </div>
+      <div class="cap" style="font-size:17px;">装修</div>
+    </div>
+    <div class="col" style="width:118px;">
+      <div class="phone" style="width:118px;height:250px;">
+        <div class="screen" style="background-image:url('screenshots/landing-law.png');background-size:118px auto;background-position:0 0;"></div>
+      </div>
+      <div class="cap" style="font-size:17px;">律所</div>
+    </div>
+    <div class="col" style="width:118px;">
+      <div class="phone" style="width:118px;height:250px;">
+        <div class="screen" style="background-image:url('screenshots/landing-photography.png');background-size:118px auto;background-position:0 0;"></div>
+      </div>
+      <div class="cap" style="font-size:17px;">摄影</div>
+    </div>
+    <div class="col" style="width:118px;">
+      <div class="phone" style="width:118px;height:250px;">
+        <div class="screen" style="background-image:url('screenshots/landing-training.png');background-size:118px auto;background-position:0 0;"></div>
+      </div>
+      <div class="cap" style="font-size:17px;">培训</div>
+    </div>
+    <div class="col" style="width:118px;">
+      <div class="phone" style="width:118px;height:250px;">
+        <div class="screen" style="background-image:url('screenshots/landing-restaurant.png');background-size:118px auto;background-position:0 0;"></div>
+      </div>
+      <div class="cap" style="font-size:17px;">餐饮</div>
+    </div>
+  </div>
+  <div class="gap"></div>
+  <div class="tags">
+    <span class="tag">大地暖棕</span>
+    <span class="tag">藏青描金</span>
+    <span class="tag">黑白极简</span>
+    <span class="tag">活力蓝青</span>
+    <span class="tag">番茄红米色</span>
+  </div>
+</section>
+
+<!-- 6 落地页板块 -->
+<section class="poster">
+  <span class="badge">该有的板块一个不少</span>
+  <h1>首屏 · 服务 · 案例<br>评价 · 表单 · 底部</h1>
+  <div class="row" style="gap:34px;margin-top:26px;">
+    <div class="col" style="width:300px;">
+      <div class="phone" style="width:300px;height:470px;">
+        <div class="screen" style="background-image:url('screenshots/landing-renovation.png');background-size:300px auto;background-position:0 0;"></div>
+      </div>
+      <div class="cap" style="font-size:18px;">首屏 + 免费报价按钮<small>点击平滑滚动到表单</small></div>
+    </div>
+    <div class="col" style="width:300px;">
+      <div class="phone" style="width:300px;height:470px;">
+        <div class="screen" style="background-image:url('screenshots/landing-renovation.png');background-size:300px auto;background-position:0 -1431px;"></div>
+      </div>
+      <div class="cap" style="font-size:18px;">案例 / 评价 / 联系表单<small>案例悬停浮出说明</small></div>
+    </div>
+  </div>
+  <div class="gap"></div>
+  <div class="tags">
+    <span class="tag g">吸顶导航</span>
+    <span class="tag">图片位置已标注</span>
+    <span class="tag o">换成你的图即可</span>
+  </div>
+</section>
+
+<!-- 7 报价计算器 -->
+<section class="poster">
+  <span class="badge">03 报价计算器</span>
+  <h1>客户自己算<br><span class="hl">当场出报价单</span></h1>
+  <div class="row" style="gap:30px;margin-top:24px;">
+    <div class="col" style="width:310px;">
+      <div class="phone" style="width:310px;height:520px;">
+        <div class="screen" style="background-image:url('screenshots/quote-input.png');background-size:310px auto;background-position:0 0;"></div>
+      </div>
+      <div class="cap" style="font-size:18px;">选户型 / 面积 / 档次<small>附加项自由勾选</small></div>
+    </div>
+    <div class="col" style="width:310px;">
+      <div class="phone" style="width:310px;height:520px;">
+        <div class="screen" style="background-image:url('screenshots/quote-result.png');background-size:310px auto;background-position:0 -1670px;"></div>
+      </div>
+      <div class="cap" style="font-size:18px;">一键生成报价单<small>单据排版，直接截图发微信</small></div>
+    </div>
+  </div>
+  <div class="pricebar">
+    <div class="l">80㎡ · 两居 · 精装 · 含水电改造</div>
+    <div class="r">¥139,668</div>
+  </div>
+</section>
+
+<!-- 8 交付 -->
+<section class="poster">
+  <span class="badge">怎么买 / 交付什么</span>
+  <h1>交付清单<span class="hl">写清楚</span><br>不扯皮</h1>
+  <div class="cards">
+    <div class="card"><div class="k">📦</div><div class="t">源码</div><div class="d">完整可运行<br>可二次修改</div></div>
+    <div class="card"><div class="k">🚀</div><div class="t">部署上线</div><div class="d">给到可直接<br>分享的链接</div></div>
+    <div class="card"><div class="k">✏️</div><div class="t">改文案</div><div class="d">改一个文件<br>换行业配色</div></div>
+    <div class="card"><div class="k">🛠</div><div class="t">7 天维护</div><div class="d">小调整<br>包修改</div></div>
+  </div>
+  <div class="sub" style="font-size:21px;margin-top:30px;">适用行业</div>
+  <div class="tags">
+    <span class="tag">美容</span><span class="tag">美甲</span><span class="tag">理发</span><span class="tag">SPA</span>
+    <span class="tag">健身</span><span class="tag">瑜伽</span><span class="tag">私教</span><span class="tag">维修</span>
+    <span class="tag">家政</span><span class="tag">装修</span><span class="tag">律所</span><span class="tag">摄影</span>
+    <span class="tag">培训</span><span class="tag">餐饮</span><span class="tag g">其他本地服务业</span>
+  </div>
+  <div class="gap"></div>
+  <div class="pricebar">
+    <div class="l">制作周期</div>
+    <div class="r">1-3 天</div>
+  </div>
+  <div class="foot"><span>先看预览链接再下单</span><span><b>不满意可按需求调整</b></span></div>
+</section>
+
+</body>
+</html>
