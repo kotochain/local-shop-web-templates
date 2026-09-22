@@ -1,4 +1,4 @@
-import base64, json, os, subprocess, urllib.parse, urllib.request, urllib.error
+import base64, hashlib, json, os, subprocess, urllib.parse, urllib.request, urllib.error
 
 ROOT = "/Users/javian/Desktop/闲鱼/网站小程序 demo"
 REPO = "kotochain/local-shop-web-templates"
@@ -31,8 +31,14 @@ def gh(path, method="GET", data=None):
 def remote_tree():
     tree = gh("/git/trees/%s?recursive=1" % BRANCH)
     if "tree" not in tree:
-        return set()
-    return {t["path"] for t in tree["tree"] if t["type"] == "blob"}
+        return {}
+    return {t["path"]: t["sha"] for t in tree["tree"] if t["type"] == "blob"}
+
+
+def blob_sha(path):
+    with open(path, "rb") as fh:
+        data = fh.read()
+    return hashlib.sha1(b"blob %d\x00" % len(data) + data).hexdigest()
 
 
 local = [f.strip() for f in subprocess.check_output(
@@ -43,8 +49,22 @@ print("local files:", len(local))
 remote = remote_tree()
 print("remote files:", len(remote))
 
-todo = [f for f in local if f not in remote]
+todo = []
+for f in local:
+    full = os.path.join(ROOT, f)
+    if not os.path.isfile(full):
+        continue
+    if f not in remote or blob_sha(full) != remote[f]:
+        todo.append(f)
 print("todo:", len(todo))
+
+
+def get_sha(rel):
+    res = gh("/contents/" + urllib.parse.quote(rel) + "?ref=" + BRANCH)
+    if "_err" in res:
+        return None
+    return res.get("sha")
+
 
 ok = 0
 fails = []
@@ -54,8 +74,11 @@ for i, rel in enumerate(todo, 1):
         continue
     with open(full, "rb") as fh:
         b64 = base64.b64encode(fh.read()).decode()
-    res = gh("/contents/" + urllib.parse.quote(rel), "PUT",
-             {"message": "feat: 本地商家网页模板套件", "content": b64, "branch": BRANCH})
+    payload = {"message": "feat: 本地商家网页模板套件", "content": b64, "branch": BRANCH}
+    sha = get_sha(rel)
+    if sha:
+        payload["sha"] = sha
+    res = gh("/contents/" + urllib.parse.quote(rel), "PUT", payload)
     if "_err" in res:
         fails.append((rel, res.get("_msg", "")[:90]))
         print("FAIL", rel, res.get("_msg", "")[:90], flush=True)
@@ -69,7 +92,7 @@ for rel, msg in fails[:10]:
     print(" -", rel, msg)
 
 remote2 = remote_tree()
-missing = [f for f in local if f not in remote2]
-print("=== still missing:", len(missing))
+missing = [f for f in local if f not in remote2 or blob_sha(os.path.join(ROOT, f)) != remote2[f]]
+print("=== still missing/changed:", len(missing))
 for m in missing[:10]:
     print(" -", m)
