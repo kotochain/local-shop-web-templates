@@ -3,7 +3,7 @@
 > Three ready-to-use frontend templates for local businesses: booking system, landing page, quote calculator.
 > 纯前端、无后端、无登录，手机上打开就能用。**改一个配置文件就能换一整个行业。**
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE)
+[![License: PolyForm Noncommercial](https://img.shields.io/badge/License-PolyForm_NC_1.0.0-orange.svg)](./LICENSE)
 [![Deploy](https://img.shields.io/badge/Pages-在线预览-blue.svg)](https://kotochain.github.io/local-shop-web-templates/)
 
 ## 在线预览
@@ -16,7 +16,7 @@
 
 建议用手机打开，或在浏览器里切到手机模拟（宽 390px）。
 
-![三套行业皮肤](./作品集/闲鱼图/03-预约系统-三套行业皮肤.png)
+![三套行业皮肤](./docs/preview-booking.png)
 
 ## 这个项目解决什么
 
@@ -44,8 +44,6 @@
 - 数据存 localStorage，按行业隔离，关掉浏览器再打开还在
 - 三套行业皮肤，URL 参数切换：`?industry=beauty` / `gym`（等同 `fitness`）/ `repair`
 
-![预约系统](./作品集/闲鱼图/02-预约系统-四步流程.png)
-
 ### ② 企业官网落地页 `landing-page`
 
 适合装修公司、律所、摄影工作室、培训机构、餐饮门店。
@@ -58,7 +56,7 @@
 - 五套行业配置：`?industry=renovation` / `law` / `photography` / `training` / `restaurant`
 - 配色全部走 CSS 变量，改一个值全站生效
 
-![落地页五个行业](./作品集/闲鱼图/05-落地页-五行业版本.png)
+![落地页五个行业](./docs/preview-landing.png)
 
 ### ③ 报价计算器 `quote-calculator`
 
@@ -70,7 +68,7 @@
 - 单价全部常量化，集中在 `src/config/pricing.js`
 - 明细以加总为准，避免四舍五入误差
 
-![报价计算器](./作品集/闲鱼图/07-报价计算器-实时出报价单.png)
+![报价计算器](./docs/preview-quote.png)
 
 ## 快速开始
 
@@ -130,10 +128,30 @@ Vite 5 + React 18 + Tailwind CSS 3.4。零后端、零数据库、零第三方�
 - 预约数据存在浏览器 localStorage，**换设备不同步、清除缓存会丢失**。要做"商家后台能看到所有订单"需要接后端，这是另一个需求。
 - 没有任何后端校验，表单数据不上传服务器，适合做演示和轻量使用，不适合承载真实交易。
 
+## 关于同步代码（网络受限时看这里）
+
+推 GitHub 走的是 HTTPS，`git push` 如果被网络阻断，用仓库自带的同步脚本，它走 GitHub API 通道：
+
+```bash
+python3 tools/sync-to-github.py
+```
+
+脚本会自动比对本地已跟踪文件和远端仓库的差异，**只上传缺失或变动的文件**，重复运行不会有副作用。依赖两个前提：`gh auth login` 已登录，且脚本顶部的 `REPO` 指向你自己的仓库。
+
 ## License
 
-[MIT](./LICENSE) — 随便用，商用也行，改完可以直接卖给客户。
+Copyright (c) 2026 kotochain · [PolyForm Noncommercial 1.0.0](./LICENSE)
+
+**非商业许可**，大白话版：
+
+- ✅ 可以：学习、研究、改造，自己非商业地使用（个人作品、公益项目、内部演示）
+- ❌ 不可以：把代码或基于它的作品**拿去商用、转售、接单交付给客户**——包括把改了个配色的版本当成自己的作品卖
+- 💼 商业使用需要作者授权，授权方式见下方
+
+## 商业授权 / 定制服务
+
+如果你想把这个模板用于商业用途（比如给你的店铺上线、给客户交付），或者需要按你的行业定制功能，联系作者获取授权：
+
+<!-- 在这里填你的联系方式，例如：闲鱼搜索「你的闲鱼昵称」 / 微信：xxxxxx -->
 
 ---
-
-如果你需要按自己的行业定制、加功能或者不想自己折腾部署，可以在闲鱼搜同类服务找到作者（联系方式在这里填你的）。
